@@ -1,14 +1,12 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_URL = 'https://your-backend-url.com/api';
+const API_BASE_URL = "http://localhost:5000/api"; // Change this if needed
 
-export const loginUser = async (email, password) => {
-  try {
-    const response = await axios.post(`${API_URL}/login`, { email, password });
-    localStorage.setItem('token', response.data.token);
-    return response.data;
-  } catch (error) {
-    console.error('Login error:', error);
-    throw error;
-  }
-};
+const api = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+export default api; // ✅ Ensure this is a default export
